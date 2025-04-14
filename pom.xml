@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.fz</groupId>
+    <artifactId>spring-boot-starter-nettyx</artifactId>
+    <version>2.3.25-RELEASE</version>
+    <name>spring-boot-nettyx-starter</name>
+    <description>spring-boot-starter-nettyx</description>
+
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+
+    <properties>
+        <java.version>17</java.version>
+        <nettyx.version>2.3.25-RELEASE</nettyx.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>3.3.10</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.fbbzl</groupId>
+            <artifactId>nettyx</artifactId>
+            <version>${nettyx.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
