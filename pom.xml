@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.fz</groupId>
+    <groupId>io.github.fbbzl</groupId>
     <artifactId>spring-boot-starter-nettyx</artifactId>
     <version>2.3.25-RELEASE</version>
     <name>spring-boot-nettyx-starter</name>
@@ -26,6 +26,7 @@
     <properties>
         <java.version>17</java.version>
         <nettyx.version>2.3.25-RELEASE</nettyx.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
@@ -43,5 +44,17 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

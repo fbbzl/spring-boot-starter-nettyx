@@ -17,5 +17,7 @@ import java.lang.annotation.*;
 @Import(StructSerializerConfiguration.class)
 public @interface EnableStructScan {
 
-    String[] basePackages();
+    String SPRING_BOOT_APPLICATION_PACKAGE = "";
+
+    String[] basePackages() default SPRING_BOOT_APPLICATION_PACKAGE;
 }
