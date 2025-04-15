@@ -36,8 +36,7 @@ public class StructSerializerConfiguration {
                     AnnotationUtils.findAnnotation(mainClass, EnableStructSerializerScan.class);
 
             if (structScan != null) {
-                String[] basePackages = defaultIfEmpty(structScan.basePackages(),
-                                                       new String[]{ ClassUtil.getPackage(mainClass) });
+                String[] basePackages = defaultIfEmpty(structScan.basePackages(), new String[]{ ClassUtil.getPackage(mainClass) });
 
                 return new StructSerializerContext(basePackages);
             }
