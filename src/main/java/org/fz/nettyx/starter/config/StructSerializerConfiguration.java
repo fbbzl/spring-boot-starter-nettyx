@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ClassUtil;
 import lombok.RequiredArgsConstructor;
 import org.fz.nettyx.serializer.struct.StructSerializerContext;
-import org.fz.nettyx.starter.annotation.EnableStructScan;
+import org.fz.nettyx.starter.annotation.EnableStructSerializerScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.AnnotationUtils;
@@ -27,13 +27,13 @@ public class StructSerializerConfiguration {
 
     @Bean
     public StructSerializerContext structSerializer() {
-        Collection<?> springBootApplicationMain = appCtx.getBeansWithAnnotation(EnableStructScan.class).values();
+        Collection<?> springBootApplicationMain = appCtx.getBeansWithAnnotation(EnableStructSerializerScan.class).values();
 
         if (CollUtil.isNotEmpty(springBootApplicationMain)) {
             Class<?> mainClass = springBootApplicationMain.iterator().next().getClass();
 
-            EnableStructScan structScan =
-                    AnnotationUtils.findAnnotation(mainClass, EnableStructScan.class);
+            EnableStructSerializerScan structScan =
+                    AnnotationUtils.findAnnotation(mainClass, EnableStructSerializerScan.class);
 
             if (structScan != null) {
                 String[] basePackages = defaultIfEmpty(structScan.basePackages(),
