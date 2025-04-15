@@ -37,7 +37,6 @@ public class StructSerializerConfiguration {
 
             if (structScan != null) {
                 String[] basePackages = defaultIfEmpty(structScan.basePackages(), new String[]{ ClassUtil.getPackage(mainClass) });
-
                 return new StructSerializerContext(basePackages);
             }
         }
