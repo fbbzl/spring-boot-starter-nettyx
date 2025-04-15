@@ -1,6 +1,5 @@
 package org.fz.nettyx.starter.config;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ClassUtil;
 import lombok.RequiredArgsConstructor;
 import org.fz.nettyx.serializer.struct.StructSerializerContext;
@@ -27,18 +26,18 @@ public class StructSerializerConfiguration {
 
     @Bean
     public StructSerializerContext structSerializer() {
-        Collection<?> springBootApplicationMain = appCtx.getBeansWithAnnotation(EnableStructSerializerScan.class).values();
+        Collection<?> springBootApplicationMain =
+                appCtx.getBeansWithAnnotation(EnableStructSerializerScan.class).values();
 
-        if (CollUtil.isNotEmpty(springBootApplicationMain)) {
-            Class<?> mainClass = springBootApplicationMain.iterator().next().getClass();
+        Class<?> mainClass = springBootApplicationMain.iterator().next().getClass();
 
-            EnableStructSerializerScan structScan =
-                    AnnotationUtils.findAnnotation(mainClass, EnableStructSerializerScan.class);
+        EnableStructSerializerScan structScan =
+                AnnotationUtils.findAnnotation(mainClass, EnableStructSerializerScan.class);
 
-            if (structScan != null) {
-                String[] basePackages = defaultIfEmpty(structScan.basePackages(), new String[]{ ClassUtil.getPackage(mainClass) });
-                return new StructSerializerContext(basePackages);
-            }
+        if (structScan != null) {
+            String[] basePackages = defaultIfEmpty(structScan.basePackages(),
+                                                   new String[]{ ClassUtil.getPackage(mainClass) });
+            return new StructSerializerContext(basePackages);
         }
 
         return new StructSerializerContext();
