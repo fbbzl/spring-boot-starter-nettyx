@@ -15,7 +15,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(StructSerializerConfiguration.class)
-public @interface EnableStructSerializerScan {
+public @interface EnableStructScan {
 
     // assign package to scan
     String[] basePackages() default {};
