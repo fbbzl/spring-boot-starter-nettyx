@@ -16,5 +16,7 @@ import java.lang.annotation.*;
 @Documented
 @Import(StructSerializerConfiguration.class)
 public @interface EnableStructSerializerScan {
+
+    // assign package to scan
     String[] basePackages() default {};
 }
