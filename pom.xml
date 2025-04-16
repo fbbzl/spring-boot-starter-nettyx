@@ -49,6 +49,7 @@
         <nettyx.version>2.3.25-RELEASE</nettyx.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <spring-boot-starter.version>3.3.10</spring-boot-starter.version>
+        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     </properties>
 
     <dependencies>
@@ -76,18 +77,21 @@
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <encoding>UTF-8</encoding>
-                    <compilerArgs>
-                        <arg>--add-opens</arg>
-                        <arg>java.desktop/java.awt.font=ALL-UNNAMED</arg>
-                    </compilerArgs>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <argLine>--add-opens java.base/java.util=ALL-UNNAMED</argLine>
+                    <argLine>
+                        --add-opens java.base/java.util=ALL-UNNAMED
+                        --add-opens java.desktop/java.awt.font=ALL-UNNAMED
+                        --add-opens java.base/java.lang.reflect=ALL-UNNAMED
+                        --add-opens java.base/java.text=ALL-UNNAMED
+                        --add-opens java.desktop/java.awt.font=ALL-UNNAMED
+                    </argLine>
                 </configuration>
             </plugin>
 
