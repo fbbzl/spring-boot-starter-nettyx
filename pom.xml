@@ -6,34 +6,54 @@
     <groupId>io.github.fbbzl</groupId>
     <artifactId>spring-boot-starter-nettyx</artifactId>
     <version>2.3.25-RELEASE</version>
-    <name>spring-boot-nettyx-starter</name>
-    <description>spring-boot-starter-nettyx</description>
+    <name>spring-boot-starter-nettyx</name>
+    <description>a spring-boot-starter for nettyx</description>
 
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <name>fengbinbin</name>
+            <email>290361638@qq.com</email>
+            <organization>https://github.com/fbbzl</organization>
+            <timezone>+8</timezone>
+        </developer>
     </developers>
+
     <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
+        <url>https://github.com/fbbzl/spring-boot-starter-nettyx</url>
+        <connection>scm:git@github.com:fbbzl/spring-boot-starter-nettyx.git</connection>
+        <developerConnection>scm:git@github.com:fbbzl/spring-boot-starter-nettyx.git</developerConnection>
     </scm>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <properties>
-        <java.version>17</java.version>
+        <!--build-->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+        <maven-javadoc-plugin-version>2.9.1</maven-javadoc-plugin-version>
+        <maven-gpg-plugin-version>1.5</maven-gpg-plugin-version>
+        <maven-deploy-plugin-version>2.8.2</maven-deploy-plugin-version>
+        <maven-source-plugin-version>2.2.1</maven-source-plugin-version>
+        <nexus-staging-maven-plugin-version>1.6.7</nexus-staging-maven-plugin-version>
+
+        <!--util-->
         <nettyx.version>2.3.25-RELEASE</nettyx.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <spring-boot-starter.version>3.3.10</spring-boot-starter.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>3.3.10</version>
+            <version>${spring-boot-starter.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -42,19 +62,101 @@
             <artifactId>nettyx</artifactId>
             <version>${nettyx.version}</version>
         </dependency>
-
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
+                <version>${maven-compiler-plugin-version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven-plugin-version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin-version}</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven-deploy-plugin-version}</version>
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
 </project>
