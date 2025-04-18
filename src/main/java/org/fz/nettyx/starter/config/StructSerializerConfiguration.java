@@ -1,7 +1,6 @@
 package org.fz.nettyx.starter.config;
 
 import cn.hutool.core.util.ClassUtil;
-import lombok.RequiredArgsConstructor;
 import org.fz.nettyx.serializer.struct.StructSerializerContext;
 import org.fz.nettyx.starter.annotation.EnableStructScan;
 import org.springframework.context.ApplicationContext;
@@ -19,13 +18,10 @@ import static cn.hutool.core.util.ArrayUtil.defaultIfEmpty;
  * @since 2025/4/14 23:00
  */
 
-@RequiredArgsConstructor
 public class StructSerializerConfiguration {
 
-    private final ApplicationContext appCtx;
-
     @Bean
-    public StructSerializerContext structSerializer() {
+    public StructSerializerContext structSerializer(ApplicationContext appCtx) {
         Collection<?> springBootApplicationMain =
                 appCtx.getBeansWithAnnotation(EnableStructScan.class).values();
 
@@ -40,6 +36,7 @@ public class StructSerializerConfiguration {
             return new StructSerializerContext(basePackages);
         }
 
-        throw new IllegalArgumentException("@EnableStructSerializerScan is not found, application is: [" + appCtx + "]");
+        throw new IllegalArgumentException("@EnableStructSerializerScan is not found, application is: [" + appCtx +
+                                           "]");
     }
 }
