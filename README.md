@@ -1,1 +1,1 @@
-a test project for nettyx
+a spring boot starter for nettyx
