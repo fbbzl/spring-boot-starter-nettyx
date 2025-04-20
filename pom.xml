@@ -47,7 +47,7 @@
         <nexus-staging-maven-plugin-version>1.6.7</nexus-staging-maven-plugin-version>
 
         <!--util-->
-        <nettyx.version>2.3.27-RELEASE</nettyx.version>
+        <nettyx.version>2.3.28-RELEASE</nettyx.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <spring-boot-starter.version>3.3.10</spring-boot-starter.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
