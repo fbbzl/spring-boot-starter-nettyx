@@ -5,7 +5,7 @@
 
     <groupId>io.github.fbbzl</groupId>
     <artifactId>spring-boot-starter-nettyx</artifactId>
-    <version>2.4.3-RELEASE</version>
+    <version>2.5.1-RELEASE</version>
 
     <name>spring-boot-starter-nettyx</name>
     <description>a spring-boot-starter for nettyx</description>

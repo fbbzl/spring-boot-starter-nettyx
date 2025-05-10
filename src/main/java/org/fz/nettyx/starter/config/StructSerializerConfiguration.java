@@ -36,6 +36,6 @@ public class StructSerializerConfiguration {
             return new StructSerializerContext(basePackages);
         }
 
-        throw new IllegalArgumentException("@EnableStructSerializerScan is not found, application is: [" + appCtx + "]");
+        throw new IllegalArgumentException("annotation " + EnableStructScan.class + " is not found, application is: [" + appCtx + "]");
     }
 }
