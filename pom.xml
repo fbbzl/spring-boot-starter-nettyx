@@ -49,7 +49,7 @@
         <!--util-->
         <nettyx.version>${project.version}</nettyx.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <spring-boot-starter.version>3.3.10</spring-boot-starter.version>
+        <spring-boot-starter.version>2.7.18</spring-boot-starter.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
     </properties>
 
