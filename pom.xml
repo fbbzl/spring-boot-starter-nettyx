@@ -5,7 +5,7 @@
 
     <groupId>io.github.fbbzl</groupId>
     <artifactId>spring-boot-starter-nettyx</artifactId>
-    <version>2.6.3-RELEASE</version>
+    <version>3.5.7</version>
 
     <name>spring-boot-starter-nettyx</name>
     <description>a spring-boot-starter for nettyx</description>
@@ -35,10 +35,13 @@
     </licenses>
 
     <properties>
+        <spring-boot-starter.version>${project.version}</spring-boot-starter.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!--build-->
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <maven-javadoc-plugin-version>2.9.1</maven-javadoc-plugin-version>
         <maven-gpg-plugin-version>1.5</maven-gpg-plugin-version>
@@ -47,10 +50,7 @@
         <nexus-staging-maven-plugin-version>1.6.7</nexus-staging-maven-plugin-version>
 
         <!--util-->
-        <nettyx.version>${project.version}</nettyx.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <spring-boot-starter.version>2.7.18</spring-boot-starter.version>
-        <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
+        <nettyx.version>2.6.3-RELEASE</nettyx.version>
     </properties>
 
     <dependencies>
