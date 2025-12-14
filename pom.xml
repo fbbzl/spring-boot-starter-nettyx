@@ -5,7 +5,7 @@
 
     <groupId>io.github.fbbzl</groupId>
     <artifactId>spring-boot-starter-nettyx</artifactId>
-    <version>3.5.7</version>
+    <version>3.5.8</version>
 
     <name>spring-boot-starter-nettyx</name>
     <description>a spring-boot-starter for nettyx</description>
@@ -50,7 +50,7 @@
         <nexus-staging-maven-plugin-version>1.6.7</nexus-staging-maven-plugin-version>
 
         <!--util-->
-        <nettyx.version>2.6.4-RELEASE</nettyx.version>
+        <nettyx.version>2.6.5-RELEASE</nettyx.version>
     </properties>
 
     <dependencies>
