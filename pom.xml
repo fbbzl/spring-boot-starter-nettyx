@@ -50,7 +50,7 @@
         <nexus-staging-maven-plugin-version>1.6.7</nexus-staging-maven-plugin-version>
 
         <!--util-->
-        <nettyx.version>2.6.5-RELEASE</nettyx.version>
+        <nettyx.version>2.6.6-RELEASE</nettyx.version>
     </properties>
 
     <dependencies>
