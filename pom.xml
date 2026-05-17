@@ -35,18 +35,15 @@
     </licenses>
 
     <properties>
-        <spring-boot-starter-nettyx.version>2.6.9</spring-boot-starter-nettyx.version>
-        <revision>${spring-boot-starter-nettyx.version}_${spring-boot.version}-RELEASE</revision>
+        <nettyx.version>2.6.10</nettyx.version>
+        <revision>${nettyx.version}_${spring-boot.version}</revision>
 
-        <!--build-->
+        <!--java-->
         <java.version>21</java.version>
 
-        <spring-boot.version>3.5.13</spring-boot.version>
-
+        <!--maven-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-
+        <flatten-maven-plugin.version>1.7.3</flatten-maven-plugin.version>
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
@@ -54,8 +51,7 @@
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
 
-        <!--util-->
-        <nettyx.version>2.6.9-RELEASE</nettyx.version>
+        <spring-boot.version>3.5.13</spring-boot.version>
     </properties>
 
     <dependencies>
@@ -80,8 +76,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -125,6 +121,9 @@
                     <additionalOptions>
                         <additionalOption>-Xdoclint:none</additionalOption>
                     </additionalOptions>
+                    <failOnError>false</failOnError>
+                    <quiet>true</quiet>
+                    <linksource>false</linksource>
                 </configuration>
                 <executions>
                     <execution>
@@ -146,6 +145,32 @@
                         <phase>verify</phase>
                         <goals>
                             <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven-plugin.version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
                         </goals>
                     </execution>
                 </executions>
