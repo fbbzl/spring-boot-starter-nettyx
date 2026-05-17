@@ -18,5 +18,5 @@ import java.lang.annotation.*;
 public @interface EnableStructScan {
 
     // assign package to scan
-    String[] basePackages() default {};
+    String[] scanBasePackages() default {};
 }
