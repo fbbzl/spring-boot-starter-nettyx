@@ -35,7 +35,7 @@
 
     <properties>
         <!--project-->
-        <nettyx.version>2.6.24</nettyx.version>
+        <nettyx.version>2.6.25</nettyx.version>
 
         <spring-boot.version>3.5.15</spring-boot.version>
         <revision>${nettyx.version}_${spring-boot.version}</revision>
