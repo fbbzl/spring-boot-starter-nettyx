@@ -1,7 +1,7 @@
 package org.fz.nettyx.starter.config;
 
 import cn.hutool.core.util.ClassUtil;
-import org.fz.nettyx.serializer.struct.StructSerializerContext;
+import org.fz.nettyx.serializer.struct.StructContext;
 import org.fz.nettyx.starter.annotation.EnableStructScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ import static cn.hutool.core.util.ArrayUtil.defaultIfEmpty;
 public class StructSerializerConfiguration {
 
     @Bean
-    public StructSerializerContext structSerializer(ApplicationContext appCtx) {
+    public StructContext structSerializer(ApplicationContext appCtx) {
         Collection<?> springBootApplicationMain =
                 appCtx.getBeansWithAnnotation(EnableStructScan.class).values();
 
@@ -33,7 +33,7 @@ public class StructSerializerConfiguration {
         if (structScan != null) {
             String[] basePackages = defaultIfEmpty(structScan.scanBasePackages(),
                                                    new String[]{ ClassUtil.getPackage(mainClass) });
-            return new StructSerializerContext(basePackages);
+            return new StructContext(basePackages);
         }
 
         throw new IllegalArgumentException("annotation " + EnableStructScan.class + " is not found, application is: [" + appCtx + "]");
