@@ -1,15 +1,13 @@
 package org.fz.nettyx.starter.config;
 
-import cn.hutool.core.util.ClassUtil;
 import org.fz.nettyx.serializer.struct.StructContext;
 import org.fz.nettyx.starter.annotation.EnableStructScan;
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.AnnotationUtils;
-
-import java.util.Collection;
-
-import static cn.hutool.core.util.ArrayUtil.defaultIfEmpty;
+import org.springframework.context.annotation.ImportAware;
+import org.springframework.core.annotation.AnnotationAttributes;
+import org.springframework.core.type.AnnotationMetadata;
+import org.springframework.util.ClassUtils;
 
 
 /**
@@ -18,24 +16,27 @@ import static cn.hutool.core.util.ArrayUtil.defaultIfEmpty;
  * @since 2025/4/14 23:00
  */
 
-public class StructSerializerConfiguration {
+public class StructSerializerConfiguration implements ImportAware {
 
-    @Bean
-    public StructContext structSerializer(ApplicationContext appCtx) {
-        Collection<?> springBootApplicationMain =
-                appCtx.getBeansWithAnnotation(EnableStructScan.class).values();
+    private String[] scanBasePackages;
 
-        Class<?> mainClass = springBootApplicationMain.iterator().next().getClass();
-
-        EnableStructScan structScan =
-                AnnotationUtils.findAnnotation(mainClass, EnableStructScan.class);
-
-        if (structScan != null) {
-            String[] basePackages = defaultIfEmpty(structScan.scanBasePackages(),
-                                                   new String[]{ ClassUtil.getPackage(mainClass) });
-            return new StructContext(basePackages);
+    @Override
+    public void setImportMetadata(AnnotationMetadata importMetadata) {
+        AnnotationAttributes attributes = AnnotationAttributes.fromMap(
+                importMetadata.getAnnotationAttributes(EnableStructScan.class.getName()));
+        if (attributes == null) {
+            throw new BeanDefinitionStoreException(
+                    "annotation " + EnableStructScan.class.getName() + " is not found");
         }
 
-        throw new IllegalArgumentException("annotation " + EnableStructScan.class + " is not found, application is: [" + appCtx + "]");
+        scanBasePackages = attributes.getStringArray("scanBasePackages");
+        if (scanBasePackages.length == 0) {
+            scanBasePackages = new String[]{ ClassUtils.getPackageName(importMetadata.getClassName()) };
+        }
+    }
+
+    @Bean
+    public StructContext structSerializer() {
+        return new StructContext(scanBasePackages);
     }
 }
