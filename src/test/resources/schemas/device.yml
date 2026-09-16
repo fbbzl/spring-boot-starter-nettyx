@@ -1,0 +1,6 @@
+namespace: yaml
+structs:
+  - name: YamlPacket
+    fields:
+      - name: id
+        type: cint

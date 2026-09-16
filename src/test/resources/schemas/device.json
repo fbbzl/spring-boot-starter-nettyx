@@ -1,0 +1,11 @@
+{
+  "namespace": "json",
+  "structs": [
+    {
+      "name": "JsonPacket",
+      "fields": [
+        { "name": "id", "type": "cint" }
+      ]
+    }
+  ]
+}
