@@ -2,6 +2,7 @@ package org.fz.nettyx.starter.config;
 
 import org.fz.nettyx.serializer.schema.SchemaRegistry;
 import org.fz.nettyx.starter.annotation.EnableSchemaScan;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -29,7 +30,7 @@ public class SchemaSerializerConfiguration implements ImportBeanDefinitionRegist
     @Override
     public void registerBeanDefinitions(
             AnnotationMetadata importingClassMetadata,
-            BeanDefinitionRegistry registry) {
+            @NonNull BeanDefinitionRegistry registry) {
         AnnotationAttributes attributes = AnnotationAttributes.fromMap(
                 importingClassMetadata.getAnnotationAttributes(EnableSchemaScan.class.getName()));
         if (attributes == null) {
